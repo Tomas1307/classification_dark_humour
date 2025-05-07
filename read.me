@@ -1,0 +1,111 @@
+# Humor Classification Model Training
+
+## Description
+This project implements various machine learning models for humor classification, including LSTM and BERT-based architectures for both binary and multi-factorial classification tasks.
+
+## Requirements
+
+### Core Dependencies
+- Python 3.11
+- TensorFlow 2.14.0
+- Keras 2.14.0
+- NumPy
+- scikit-learn
+- transformers
+- datasets
+
+### Important Version Notes
+This project requires specific versions of TensorFlow and Keras to function properly:
+```bash
+pip install tensorflow==2.14.0
+pip install keras==2.14.0
+```
+
+## Project Structure
+The project follows a modular structure with the following main components:
+- `models/`: Core model implementations
+  - `console_models.py`: Training console implementation
+  - `encoder_only_lstm.py`: LSTM model architectures
+  - `finetuning.py`: BERT fine-tuning implementations
+  - `load_data.py`: Data loading and preprocessing utilities
+
+## Module Import Troubleshooting
+
+### Common Import Issues
+If you encounter module import errors, you may need to modify the import statements depending on your project structure:
+
+#### For Notebook Usage
+When running in a Jupyter notebook, use the following import format:
+```python
+from models.load_data import compute_metrics_multifactorial, compute_metrics, combine_dataframes, tokenize_function, prepare_dataset
+from models.console_models import ModelTrainingConsole
+```
+
+#### For Direct Script Usage
+If running scripts directly and encountering import errors, modify the imports by removing the 'models.' prefix:
+```python
+from load_data import compute_metrics_multifactorial, compute_metrics, combine_dataframes, tokenize_function, prepare_dataset
+from console_models import ModelTrainingConsole
+```
+
+### Important Notes
+- Ensure all required model files are in your Python path
+- The project assumes a specific directory structure - maintain the module organization for proper functionality
+- All import paths should be adjusted based on your working directory
+
+## Running the Training Console
+1. Ensure all dependencies are installed
+2. Set up your data directory structure
+3. Run the console:
+```python
+from models.console_models import ModelTrainingConsole
+console = ModelTrainingConsole()
+console.run_selected_training()
+```
+
+## Running from Script
+
+### Terminal Setup
+
+First make sure you are on the correct path, in my case:
+
+```Terminal
+cd  C:\Users\acost\Desktop\Andes\10\NLP\NLP\models_humour_analysis>
+```
+
+### Execute Console
+
+Then run the console:
+
+```Terminal
+python models/console_models.py
+```
+
+For reference, this demonstrates how to run the project directly from a terminal/command prompt rather than through a Python environment or notebook.
+## Data Directory Structure
+Ensure your data is organized as follows:
+```
+data/
+└── classification/
+    ├── complete_dataset_chistes.csv
+    ├── data_with_no_humour.csv
+    ├── captionning_blip.csv
+    └── captionning_vlt.csv
+```
+
+## Model Output Directory
+Models and evaluation results will be saved in:
+```
+models/
+├── binary/
+│   ├── testing/
+│   └── evaluation/
+└── multifactorial/
+    ├── testing/
+    └── evaluation/
+```
+
+## Troubleshooting
+- If encountering CUDA/GPU errors, ensure compatible CUDA drivers are installed
+- For memory issues, try reducing batch sizes or model sizes
+- For import errors, verify your Python path includes the project root directory
